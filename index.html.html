@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ECE 2113 Concept Check — Experiments 1–3</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f3f4f6;color:#17202a;font-family:Arial,sans-serif}
+.wrap{max-width:900px;margin:auto;padding:16px}
+header{background:#111827;color:#fff;border-radius:16px;padding:22px;margin-bottom:14px}
+h1{margin:0 0 5px;font-size:25px}.sub{opacity:.8}
+.info{background:#fff;padding:15px;border-radius:13px;margin-bottom:14px;box-shadow:0 2px 10px #0001}
+.section{font-size:20px;font-weight:800;margin:22px 0 10px}
+.q{background:#fff;padding:16px;border-radius:13px;margin:10px 0;box-shadow:0 2px 8px #0000000d}
+.qtext{font-weight:700;line-height:1.45;margin-bottom:11px}
+.option{display:block;padding:10px;margin:7px 0;border:1px solid #d1d5db;border-radius:9px;cursor:pointer}
+.option:hover{background:#f9fafb}
+.option input{margin-right:9px}
+.correct{background:#dcfce7!important;border-color:#16a34a!important}
+.wrong{background:#fee2e2!important;border-color:#dc2626!important}
+.explain{font-size:14px;margin-top:8px}
+.sticky{position:sticky;bottom:8px;background:#ffffffee;padding:10px;border-radius:13px;box-shadow:0 2px 15px #0002;backdrop-filter:blur(8px)}
+button{border:0;border-radius:10px;padding:12px 18px;font-weight:700;cursor:pointer;margin-right:7px}
+#submit{background:#111827;color:#fff}.reset{background:#e5e7eb}
+#result{font-size:20px;font-weight:800;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><h1>ECE 2113 Concept Check Exam</h1><div class="sub">Experiments 1–3 • All Multiple Choice</div></header>
+<div class="info"><b>Instructions:</b> Choose the best answer for every question. Click <b>Submit Exam</b> to automatically score. <b>Reset / Randomize</b> creates a new question order.</div>
+<form id="exam"></form>
+<div class="sticky">
+<button id="submit" type="button">Submit Exam</button>
+<button class="reset" id="reset" type="button">Reset / Randomize</button>
+<div id="result"></div>
+</div>
+</div>
+<script>
+const original = [["What does SPICE stand for?", ["Simulation Program with Integrated Circuit Emphasis", "System Program for Integrated Circuit Electronics", "Simulation Process in Circuit Engineering", "Standard Program for Integrated Circuit Evaluation"], 0], ["What does SPICE use to describe circuit elements?", ["Mathematical models", "Only photographs", "Mechanical drawings", "Truth tables only"], 0], ["What is LTspice?", ["A SPICE simulation software, schematic capture, and waveform viewer", "A PCB manufacturing machine", "A programming language", "A spreadsheet program"], 0], ["What is a schematic?", ["A drawing/plan showing how something operates or is put together", "A waveform graph", "A simulation result only", "A resistor value"], 0], ["What is a node?", ["A point where terminals of two or more circuit elements meet", "A type of resistor", "A simulation command", "A waveform parameter"], 0], ["Passive elements are elements that:", ["Use or dissipate electrical energy", "Generate only digital signals", "Always amplify signals", "Never consume energy"], 0], ["Analog circuits operate on:", ["Continuous-valued signals", "Only 0 and 1", "Only negative voltages", "Only AC signals"], 0], ["Digital circuits operate on signals that commonly exist at:", ["Two levels, such as zeros and ones", "Infinite voltage levels", "Only one level", "Only sinusoidal levels"], 0], ["Which LTspice directive finds the DC operating point?", [".OP", ".DC", ".TRAN", ".STEP"], 0], ["Which LTspice directive performs a DC source sweep?", [".DC", ".OP", ".TRAN", ".AC"], 0], ["Which LTspice directive performs transient analysis?", [".TRAN", ".DC", ".OP", ".STEP"], 0], ["Which LTspice directive is used for parameter sweeps?", [".STEP", ".OP", ".TRAN", ".END"], 0], ["Which shortcut places a component in LTspice?", ["F2", "F3", "F5", "G"], 0], ["Which shortcut draws a wire?", ["F3", "F2", "F6", "F8"], 0], ["Which shortcut places a net label?", ["F4", "F5", "F7", "G"], 0], ["Which shortcut deletes an object?", ["F5", "F2", "F6", "F8"], 0], ["Which shortcut duplicates an object?", ["F6", "F5", "F7", "F3"], 0], ["Which shortcut moves an object?", ["F7", "F6", "F8", "F4"], 0], ["Which shortcut drags an object?", ["F8", "F7", "F5", "F2"], 0], ["Which shortcut places ground?", ["G", "F4", "F3", "F2"], 0], ["What can Alt + Click on a resistor display?", ["Power", "Frequency", "Node name only", "Capacitance"], 0], ["Which shortcut runs the simulation?", ["Ctrl + R", "Ctrl + H", "F5", "F9"], 0], ["Which shortcut halts the simulation?", ["Ctrl + H", "Ctrl + R", "F6", "F8"], 0], ["If a resistor's two terminal node voltages are known, its voltage can be found by:", ["Taking the difference between the two node voltages", "Adding the two node voltages always", "Multiplying the node voltages", "Dividing the node voltages"], 0], ["What does DC Sweep allow the user to vary?", ["The voltage or current of a specific device", "Only the time axis", "Only capacitor values", "Only temperature"], 0], ["A DC Sweep can be:", ["Single or nested", "AC or digital only", "Transient or thermal only", "Analog or mechanical only"], 0], ["In .dc V1 0 10 0.1, what is 0?", ["Starting value", "Ending value", "Increment", "Frequency"], 0], ["In .dc V1 0 10 0.1, what is 10?", ["Ending value", "Starting value", "Increment", "Stop time"], 0], ["In .dc V1 0 10 0.1, what is 0.1?", ["Increment", "Starting value", "Ending value", "Amplitude"], 0], ["LTspice command lines begin with:", ["A dot (.)", "A comma", "A slash", "A hashtag"], 0], ["In Experiment 2 Circuit #1, Va is swept from:", ["−24 V to +24 V", "0 V to 24 V", "−5 V to +5 V", "−10 V to +10 V"], 0], ["What is the step size for Va in Experiment 2 Circuit #1?", ["4 V", "1 V", "2.5 V", "0.1 V"], 0], ["In Experiment 2 Circuit #1, R1 is:", ["40 kΩ", "4 kΩ", "60 kΩ", "20 kΩ"], 0], ["In Experiment 2 Circuit #1, R2 is:", ["60 kΩ", "40 kΩ", "6 kΩ", "20 kΩ"], 0], ["The output voltage in Circuit #1 is taken across:", ["R2 with respect to ground", "R1 with respect to R2", "The source only", "R1 only"], 0], ["In Experiment 2 Circuit #2, I1 is swept from:", ["−0.1 A to +0.5 A", "−1 A to +1 A", "0 A to +0.5 A", "−0.5 A to +0.1 A"], 0], ["What is the step size for I1 in Circuit #2?", ["0.1 A", "0.01 A", "0.5 A", "1 A"], 0], ["In Circuit #2, R1 is:", ["2 kΩ", "8 kΩ", "20 kΩ", "1 kΩ"], 0], ["In Circuit #2, R2 is:", ["8 kΩ", "2 kΩ", "1 kΩ", "80 kΩ"], 0], ["Which expression can calculate resistor power?", ["P = VI", "P = V + I", "P = V/I only", "P = R/I"], 0], ["A nested DC sweep varies:", ["More than one parameter", "No parameters", "Only time", "Only one fixed value"], 0], ["In Circuit #3, V1 is swept from:", ["−5 V to +5 V", "−24 V to +24 V", "0 V to +5 V", "−1 V to +1 V"], 0], ["In Circuit #3, V2 is swept from:", ["−5 V to +5 V", "−10 V to +10 V", "0 V to +5 V", "−24 V to +24 V"], 0], ["What step size is used for the nested V1/V2 sweep in Circuit #3?", ["2.5 V", "1 V", "0.1 V", "5 V"], 0], ["Transient Analysis studies changes in voltage and current over:", ["Time", "Resistance", "Temperature", "Frequency only"], 0], ["In Transient Analysis, the x-axis is always:", ["Time", "Voltage", "Current", "Resistance"], 0], ["Experiment 3 Circuit #1 uses what type of source?", ["AC sinusoidal voltage source", "DC current source", "Pulse voltage source", "Digital logic source"], 0], ["What is the amplitude of the AC source in Circuit #1?", ["10 V", "5 V", "1 V", "20 V"], 0], ["What is the frequency of the AC source?", ["1 kHz", "10 kHz", "100 Hz", "5 kHz"], 0], ["For a 1 kHz signal, one cycle takes:", ["0.001 s", "0.01 s", "0.1 s", "1 s"], 0], ["At 1 kHz, exactly 10 cycles require a stop time of:", ["0.01 s", "0.001 s", "0.1 s", "10 s"], 0], ["Changing DC offset mainly changes the waveform's:", ["Vertical position", "Frequency", "Number of cycles", "Rise time only"], 0], ["Changing amplitude changes the waveform's:", ["Amplitude/height", "Period only", "DC analysis mode", "Number of nodes"], 0], ["Changing frequency changes:", ["How fast the waveform oscillates", "The resistor value", "The ground node", "The component symbol"], 0], ["Tdelay determines:", ["When the signal is delayed before starting", "The resistor power", "The number of nodes", "The capacitor value"], 0], ["Phi is associated with:", ["Phase", "Power", "Resistance", "Period only"], 0], ["Ncycles specifies:", ["The number of cycles", "The resistor value", "The amplitude only", "The DC offset"], 0], ["In Experiment 3 Circuit #2, I1 is changed to a:", ["Pulse signal generator", "DC voltage source", "Sine voltage source", "Capacitor"], 0], ["In Circuit #2, Ioff is:", ["0 A", "5 A", "2.5 A", "1 A"], 0], ["In Circuit #2, Ion is:", ["5 A", "0 A", "2.5 A", "10 A"], 0], ["Ton represents:", ["The time the pulse is ON", "The time the pulse is OFF", "The rise amplitude", "The phase"], 0], ["Tperiod represents:", ["The time for one complete cycle", "The ON time only", "The OFF time only", "The rise time only"], 0], ["In Circuit #2, Ton is:", ["2.5 ms", "5 ms", "1 ms", "10 ms"], 0], ["In Circuit #2, Tperiod is:", ["5 ms", "2.5 ms", "1 ms", "10 ms"], 0], ["With Ton = 2.5 ms and Tperiod = 5 ms, the duty cycle is:", ["50%", "25%", "10%", "90%"], 0], ["A pulse that is 10% ON and 90% OFF should have Ton/Tperiod equal to:", ["0.1", "0.5", "0.9", "10"], 0], ["Tr represents the:", ["Rise time", "Fall time", "Period", "Delay"], 0], ["Tf represents the:", ["Fall time", "Rise time", "Frequency", "Amplitude"], 0], ["For Tperiod = 5 ms, exactly 5 cycles require:", ["25 ms", "5 ms", "10 ms", "50 ms"], 0], ["Experiment 3 Circuit #3 contains a resistor and a:", ["Capacitor", "Inductor", "Diode", "Transistor"], 0], ["In Circuit #3, R1 is:", ["100 Ω", "1 kΩ", "100 kΩ", "10 Ω"], 0], ["In Circuit #3, C1 is:", ["1 μF", "10 μF", "100 μF", "1 nF"], 0], ["The output is taken at the node between R1 and the:", ["Capacitor", "Ground source", "AC source only", "Current source"], 0], ["When the pulse goes HIGH, the capacitor voltage begins to:", ["Rise/charge", "Immediately become zero", "Fall/discharge", "Stay permanently constant"], 0], ["When the pulse goes LOW, the capacitor voltage begins to:", ["Fall/discharge", "Rise indefinitely", "Become the source voltage instantly", "Stop existing"], 0], ["A capacitor's voltage does not change:", ["Instantly", "With time", "Through charging", "During transient analysis"], 0], ["Increasing C generally makes capacitor voltage change:", ["More slowly", "More quickly", "Instantly", "Not at all"], 0], ["The RC output behavior depends on:", ["Resistance and capacitance", "Only voltage", "Only current", "Only frequency"], 0], ["If a capacitor does not have enough time to charge, its voltage may:", ["Not reach the maximum supplied voltage", "Always exceed the source voltage", "Become negative automatically", "Become infinite"], 0], ["Which analysis is most appropriate for observing capacitor charging over time?", ["Transient Analysis", "DC Sweep only", "Operating Point only", "Netlist generation"], 0]];
+original.forEach((x,i)=>x.push(i<24?1:(i<44?2:3)));
+let qs=[];
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function render(){
+ const f=document.getElementById("exam"); f.innerHTML="";
+ const groups=[
+  {n:1,title:"PART I — EXPERIMENT 1: LTspice & Schematics"},
+  {n:2,title:"PART II — EXPERIMENT 2: DC Sweep Analysis"},
+  {n:3,title:"PART III — EXPERIMENT 3: Transient Analysis"}
+ ];
+ let displayNo=1;
+ groups.forEach(g=>{
+  const h=document.createElement("div"); h.className="section"; h.textContent=g.title; f.appendChild(h);
+  qs.filter(x=>x[3]===g.n).forEach(x=>{
+   const i=qs.indexOf(x);
+   const d=document.createElement("div"); d.className="q"; d.dataset.i=i;
+   let opts=x[1].map((o,k)=>`<label class="option"><input type="radio" name="q${i}" value="${k}"> ${esc(o)}</label>`).join("");
+   d.innerHTML=`<div class="qtext">${displayNo}. ${esc(x[0])}</div>${opts}<div class="explain" id="e${i}"></div>`;
+   f.appendChild(d); displayNo++;
+  });
+ });
+}
+function submit(){
+ let score=0;
+ qs.forEach((x,i)=>{
+   const card=document.querySelector('.q[data-i="'+i+'"]');
+   const labels=card.querySelectorAll(".option");
+   const picked=card.querySelector('input:checked');
+   labels.forEach((lab,k)=>{lab.classList.remove("correct","wrong");if(k===x[2])lab.classList.add("correct")});
+   const e=document.getElementById("e"+i);
+   if(picked && +picked.value===x[2]){score++;e.textContent="✓ Correct";e.style.color="#15803d"}
+   else{if(picked) labels[+picked.value].classList.add("wrong");e.textContent="✗ Correct answer: "+x[1][x[2]];e.style.color="#b91c1c"}
+ });
+ document.getElementById("result").textContent=`Score: ${score} / ${qs.length} (${Math.round(score/qs.length*100)}%)`;
+ window.scrollTo({top:document.body.scrollHeight,behavior:"smooth"});
+}
+function resetExam(){
+ qs=[];
+ [1,2,3].forEach(n=>{
+  const group=original.filter(x=>x[3]===n).map(x=>[x[0],[...x[1]],x[2],x[3]]);
+  qs.push(...shuffle(group));
+ });
+ render();
+ document.getElementById("result").textContent="";
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+document.getElementById("submit").onclick=submit;
+document.getElementById("reset").onclick=resetExam;
+resetExam();
+</script>
+</body></html>
