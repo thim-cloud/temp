@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ECE 2113 Concept Check — Experiments 1–3</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4f4f4;color:#171717;font-family:Arial,Helvetica,sans-serif}
+.wrap{max-width:900px;margin:auto;padding:18px}
+header{background:#111;color:white;border-radius:16px;padding:24px;margin-bottom:14px}
+h1{margin:0 0 6px;font-size:25px}.sub{opacity:.75}
+.info{background:white;border-radius:14px;padding:16px;margin-bottom:18px;line-height:1.5}
+.section{font-size:20px;font-weight:800;margin:24px 0 10px}
+.q{background:white;border-radius:14px;padding:16px;margin:10px 0;box-shadow:0 2px 8px #00000012}
+.qtext{font-weight:700;line-height:1.45;margin-bottom:10px}
+.option{display:block;border:1px solid #d4d4d4;border-radius:9px;padding:10px;margin:7px 0;cursor:pointer}
+.option:hover{background:#f7f7f7}
+.correct{background:#dff7e5!important;border-color:#199447!important}
+.wrong{background:#ffe1e1!important;border-color:#c62828!important}
+.explain{font-size:14px;margin-top:8px;font-weight:600}
+.bar{position:sticky;bottom:10px;background:#fffffff2;padding:11px;border-radius:14px;box-shadow:0 2px 15px #0003;backdrop-filter:blur(8px)}
+button{border:0;border-radius:10px;padding:12px 17px;font-weight:700;cursor:pointer;margin-right:7px}
+#submit{background:#111;color:#fff}.reset{background:#e5e5e5}
+#result{font-size:19px;font-weight:800;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>ECE 2113 Concept Check Exam</h1>
+<div class="sub">Experiments 1–3 • Concepts Only</div>
+</header>
+
+<div class="info">
+<b>Instructions:</b> Choose the best answer for every question.
+<br>✓ Circuit-specific questions such as “Circuit #1/#2/#3” and specific component values have been removed.
+<br>✓ Questions are randomized when you reset.
+</div>
+
+<form id="exam"></form>
+
+<div class="bar">
+<button id="submit" type="button">Submit Exam</button>
+<button class="reset" id="reset" type="button">Reset / Randomize</button>
+<div id="result"></div>
+</div>
+</div>
+
+<script>
+const original = [
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","What does SPICE stand for?",["Simulation Program with Integrated Circuit Emphasis","System Program for Integrated Circuit Electronics","Simulation Process in Circuit Engineering","Standard Program for Integrated Circuit Evaluation"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","What is LTspice?",["A high-performance SPICE simulation software, schematic capture, and waveform viewer","A PCB manufacturing machine","A programming language","A spreadsheet program"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","What does LTspice use to describe circuit elements?",["Mathematical models","Photographs only","Mechanical drawings only","Truth tables only"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","What is a schematic?",["A drawing/plan showing how something operates or is put together","A waveform graph","A simulation result only","A resistor value"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","Which is a benefit of LTspice?",["Stable SPICE circuit simulation","Only digital simulation","No waveform viewer","No schematic editor"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","Which feature is included with LTspice?",["Waveform viewer","Word processor","Video editor","Spreadsheet database"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","LTspice has approximately how many symbols according to the module?",["800","80","8,000","80,000"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","What is the schematic capture program used for?",["Creating new schematics or modifying example circuits","Only drawing graphs","Only writing code","Only editing datasheets"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","How can a component be rotated in the schematic editor?",["Ctrl + R","Ctrl + M","Ctrl + W","Ctrl + S"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","How can a component be mirrored?",["Ctrl + M","Ctrl + R","Ctrl + G","Ctrl + N"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","What should you do to cancel or quit a component type?",["Click the right mouse button","Press Enter twice","Close the browser","Press Ctrl + C"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","How do you add a source or additional circuit element?",["Use the Component symbol in the Schematic Editor Toolbar","Use the waveform viewer only","Use the calculator","Use the browser address bar"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","Which is an additional circuit element listed in the module?",["Independent Current Source","Spreadsheet Cell","Text Editor","Audio Source"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","What is required for a circuit to be simulated?",["A ground connection","A video file","A web browser","A printer"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","Which shortcut draws a wire?",["W","G","N","F2"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","Which shortcut places ground?",["G","W","N","F4"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","Which shortcut labels a node?",["N","W","G","F2"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","How do you modify a circuit element's attributes?",["Right-click the component symbol","Left-click the waveform","Press Space","Open a spreadsheet"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","How do you edit the visible text/label next to a component?",["Right-click the text next to the component","Double-click the browser tab","Press G","Use the waveform viewer"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","In LTspice unit labels, what does K or k mean?",["kilo = 10^3","milli = 10^-3","mega = 10^6","micro = 10^-6"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","In LTspice unit labels, what does m or M mean?",["milli = 10^-3","mega = 10^6","kilo = 10^3","nano = 10^-9"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","How should 10^6 be written in LTspice according to the module?",["MEG","M","MIL","K"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","How should 1 Farad be entered?",["1","1F","F1","1 farad"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","Which components can have manufacturer attributes in the component database?",["Resistors, capacitors, inductors, and diodes","Only wires","Only grounds","Only labels"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","How do you configure a component to a manufacturer's attributes?",["Right-click the component, choose Select or Pick New, select a device, then OK","Delete the component and restart","Use Ctrl + R only","Open the waveform viewer"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","How do you edit a voltage source?",["Right-click the voltage symbol and enter its DC value","Right-click the ground and type the voltage","Use the waveform viewer","Press N"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","What optional value can be entered for a voltage source?",["Series resistance","Node color","Waveform font","File name"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","According to the module, what can you do with an LT macromodel shortcut?",["Access its datasheet for design reference","Delete the model","Convert it to a video","Change the computer clock"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","Which LTspice directive finds the DC operating point?",[".OP",".DC",".TRAN",".STEP"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","Which LTspice directive performs a DC source sweep?",[".DC",".OP",".TRAN",".AC"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","Which LTspice directive performs transient analysis?",[".TRAN",".DC",".OP",".STEP"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","Which LTspice directive is used for parameter sweeps?",[".STEP",".OP",".TRAN",".END"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","Which shortcut places a component in LTspice?",["F2","F3","F5","G"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","Which shortcut places a net label?",["F4","F5","F7","G"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","Which shortcut runs the simulation?",["Ctrl + R","Ctrl + H","F5","F9"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","Which shortcut halts the simulation?",["Ctrl + H","Ctrl + R","F6","F8"],0],
+["PART I — EXPERIMENT 1: LTspice & SCHEMATICS","If a resistor's two terminal node voltages are known, its voltage can be found by:",["Taking the difference between the two node voltages","Adding the two node voltages always","Multiplying the node voltages","Dividing the node voltages"],0],
+
+["PART II — EXPERIMENT 2: DC SWEEP ANALYSIS","What does DC Sweep allow the user to vary?",["The voltage or current of a specific device","Only the time axis","Only capacitor values","Only temperature"],0],
+["PART II — EXPERIMENT 2: DC SWEEP ANALYSIS","A DC Sweep can be:",["Single or nested","AC or digital only","Transient or thermal only","Analog or mechanical only"],0],
+["PART II — EXPERIMENT 2: DC SWEEP ANALYSIS","In .dc V1 0 10 0.1, what does 0 represent?",["Starting value","Ending value","Increment","Frequency"],0],
+["PART II — EXPERIMENT 2: DC SWEEP ANALYSIS","In .dc V1 0 10 0.1, what does 10 represent?",["Ending value","Starting value","Increment","Stop time"],0],
+["PART II — EXPERIMENT 2: DC SWEEP ANALYSIS","In .dc V1 0 10 0.1, what does 0.1 represent?",["Increment","Starting value","Ending value","Amplitude"],0],
+["PART II — EXPERIMENT 2: DC SWEEP ANALYSIS","LTspice command lines begin with:",["A dot (.)","A comma","A slash","A hashtag"],0],
+["PART II — EXPERIMENT 2: DC SWEEP ANALYSIS","Which expression can calculate resistor power?",["P = VI","P = V + I","P = V/I only","P = R/I"],0],
+["PART II — EXPERIMENT 2: DC SWEEP ANALYSIS","A nested DC sweep varies:",["More than one parameter","No parameters","Only time","Only one fixed value"],0],
+
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","Transient Analysis studies changes in voltage and current over:",["Time","Resistance","Temperature","Frequency only"],0],
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","In Transient Analysis, the x-axis represents:",["Time","Voltage","Current","Resistance"],0],
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","For a sinusoidal signal, changing DC offset mainly changes the waveform's:",["Vertical position","Frequency","Number of cycles","Rise time only"],0],
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","Changing amplitude changes the waveform's:",["Amplitude/height","Period only","DC analysis mode","Number of nodes"],0],
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","Changing frequency changes:",["How fast the waveform oscillates","The resistor value","The ground node","The component symbol"],0],
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","Tdelay determines:",["When the signal is delayed before starting","The resistor power","The number of nodes","The capacitor value"],0],
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","Phi is associated with:",["Phase","Power","Resistance","Period only"],0],
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","Ncycles specifies:",["The number of cycles","The resistor value","The amplitude only","The DC offset"],0],
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","Ton represents:",["The time the pulse is ON","The time the pulse is OFF","The rise amplitude","The phase"],0],
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","Tperiod represents:",["The time for one complete cycle","The ON time only","The OFF time only","The rise time only"],0],
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","With Ton = 2.5 ms and Tperiod = 5 ms, the duty cycle is:",["50%","25%","10%","90%"],0],
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","A pulse that is 10% ON and 90% OFF should have Ton/Tperiod equal to:",["0.1","0.5","0.9","10"],0],
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","Tr represents the:",["Rise time","Fall time","Period","Delay"],0],
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","Tf represents the:",["Fall time","Rise time","Frequency","Amplitude"],0],
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","A capacitor's voltage does not change:",["Instantly","With time","Through charging","During transient analysis"],0],
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","Increasing capacitance generally makes capacitor voltage change:",["More slowly","More quickly","Instantly","Not at all"],0],
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","The RC output behavior depends on:",["Resistance and capacitance","Only voltage","Only current","Only frequency"],0],
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","When a capacitor is charging, its voltage generally:",["Rises toward the supplied voltage","Immediately becomes zero","Falls indefinitely","Stops existing"],0],
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","When a capacitor is discharging, its voltage generally:",["Falls toward its lower steady value","Rises indefinitely","Becomes infinite","Never changes"],0],
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","If a capacitor does not have enough time to charge, its voltage may:",["Not reach the maximum supplied voltage","Always exceed the source voltage","Become negative automatically","Become infinite"],0],
+["PART III — EXPERIMENT 3: TRANSIENT ANALYSIS","Which analysis is most appropriate for observing capacitor charging over time?",["Transient Analysis","DC Sweep only","Operating Point only","Netlist generation"],0]
+];
+
+let qs=[];
+
+function shuffle(a){
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function esc(s){
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+function resetExam(){
+  qs=original.map(x=>[x[0],x[1],[...x[2]],x[3]]);
+  // Shuffle questions within each part while keeping the three parts separated.
+  const parts=[...new Set(qs.map(x=>x[0]))];
+  let ordered=[];
+  parts.forEach(p=>{
+    const group=shuffle(qs.filter(x=>x[0]===p));
+    ordered.push(...group);
+  });
+  qs=ordered;
+
+  const form=document.getElementById("exam");
+  form.innerHTML="";
+  let n=1,lastPart="";
+  qs.forEach((x,i)=>{
+    if(x[0]!==lastPart){
+      const h=document.createElement("div");
+      h.className="section";
+      h.textContent=x[0];
+      form.appendChild(h);
+      lastPart=x[0];
+    }
+
+    const card=document.createElement("div");
+    card.className="q";
+    card.dataset.i=i;
+
+    let options=x[2].map((o,k)=>`<label class="option"><input type="radio" name="q${i}" value="${k}"> ${esc(o)}</label>`).join("");
+
+    card.innerHTML=`<div class="qtext">${n}. ${esc(x[1])}</div>${options}<div class="explain" id="e${i}"></div>`;
+    form.appendChild(card);
+    n++;
+  });
+  document.getElementById("result").textContent="";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function submitExam(){
+  let score=0;
+  qs.forEach((x,i)=>{
+    const card=document.querySelector('.q[data-i="'+i+'"]');
+    const labels=card.querySelectorAll(".option");
+    const picked=card.querySelector("input:checked");
+
+    labels.forEach((lab,k)=>{
+      lab.classList.remove("correct","wrong");
+      if(k===x[3]) lab.classList.add("correct");
+    });
+
+    const e=document.getElementById("e"+i);
+
+    if(picked && Number(picked.value)===x[3]){
+      score++;
+      e.textContent="✓ Correct";
+      e.style.color="#16803c";
+    }else{
+      if(picked) labels[Number(picked.value)].classList.add("wrong");
+      e.textContent="✗ Correct answer: "+x[2][x[3]];
+      e.style.color="#b42318";
+    }
+  });
+
+  const pct=Math.round(score/qs.length*100);
+  document.getElementById("result").textContent=`Score: ${score} / ${qs.length} (${pct}%)`;
+  window.scrollTo({top:document.body.scrollHeight,behavior:"smooth"});
+}
+
+document.getElementById("submit").onclick=submitExam;
+document.getElementById("reset").onclick=resetExam;
+resetExam();
+</script>
+</body>
+</html>
